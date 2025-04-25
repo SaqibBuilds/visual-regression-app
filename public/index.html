@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BackstopJS Visual QA</title>
+  <style>
+    body { font-family: sans-serif; padding: 40px; background: #f8f8f8; }
+    h1 { margin-bottom: 20px; }
+    input, button { padding: 10px; margin: 5px 10px 10px 0; width: 400px; }
+    #log { margin-top: 30px; white-space: pre-line; background: #fff; padding: 20px; border-radius: 5px; border: 1px solid #ddd; max-height: 400px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h1>Visual QA</h1>
+
+  <input type="text" id="referenceUrl" placeholder="Enter Reference Staging URL" />
+  <br>
+  <input type="text" id="testUrl" placeholder="Enter Live URL" />
+  <br>
+
+  <button onclick="runTest('reference')">Run Reference [Step 1]</button>
+  <button onclick="runTest('test')">Run Test [Step 2]</button>
+  <button onclick="openReport()">View Report</button>
+
+  <div id="log">Log output will appear here...</div>
+
+  <script>
+    function runTest(type) {
+      const referenceUrl = document.getElementById("referenceUrl").value;
+      const testUrl = document.getElementById("testUrl").value;
+
+      if (!referenceUrl || !testUrl) {
+        alert("Please enter both URLs");
+        return;
+      }
+
+      document.getElementById("log").innerText = `Running ${type}...`;
+
+      fetch(`/run-${type}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ referenceUrl, testUrl })
+      })
+        .then(res => res.text())
+        .then(text => {
+          document.getElementById("log").innerText = text;
+        })
+        .catch(err => {
+          document.getElementById("log").innerText = "Error: " + err.message;
+        });
+    }
+
+    function openReport() {
+      window.open("/backstop_data/html_report/index.html", "_blank");
+    }
+  </script>
+</body>
+</html>

@@ -1,13 +1,17 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const path = require("path");
 
-app.use('/backstop_data/html_report', express.static('backstop_data/html_report'));
+// Serve static files (BackstopJS HTML report, etc.)
+app.use("/backstop_data", express.static(path.join(__dirname, "backstop_data")));
 
-app.get('/', (req, res) => {
-  res.send('✅ Visual Regression App is running!');
+// Optional: Root route
+app.get("/", (req, res) => {
+  res.send("Visual Regression App is running. To view report, go to /backstop_data/html_report/index.html");
 });
 
-app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });

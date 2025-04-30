@@ -29,3 +29,8 @@ node server.js
 
 ## Open your browser and navigate to
 http://localhost:3000
+
+## Run tests using the Visual UI interface
+Enter Staging URL:
+Enter Live URL:
+Comma Separated Screen Sizes (as manuy as you want):

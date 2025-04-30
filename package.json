@@ -1,18 +1,9 @@
 {
-  "name": "visual-regression-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "backstopjs": "^6.3.25"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
     "express": "^5.1.0"
   }
 }

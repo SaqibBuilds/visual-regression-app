@@ -1,32 +1,21 @@
 {
-  "id": "backstop_default",
+  "id": "visual_regression",
   "viewports": [
     {
-      "label": "mobile",
-      "width": 375,
-      "height": 667
-    },
-    {
-      "label": "desktop",
-      "width": 1366,
-      "height": 768
-    },
-    {
-      "label": "4K",
-      "width": 3840,
-      "height": 2160
+      "label": "1920x1080",
+      "width": 1920,
+      "height": 1080
     }
   ],
   "scenarios": [
     {
       "label": "Homepage",
-      "url": "https://www.w3schools.com/",
-      "referenceUrl": "https://dev.saqibsaeed.com",
+      "url": "https://recoverypathmarketing.com/",
+      "referenceUrl": "https://stg-recoverypathmarketingcom-recoverystg.kinsta.cloud/",
       "selectors": [
         "document"
       ],
-      "misMatchThreshold": 0.1,
-      "requireSameDimensions": true
+      "misMatchThreshold": 0.01
     }
   ],
   "paths": {
@@ -34,7 +23,8 @@
     "bitmaps_test": "backstop_data/bitmaps_test",
     "engine_scripts": "backstop_data/engine_scripts",
     "html_report": "backstop_data/html_report",
-    "ci_report": "backstop_data/ci_report"
+    "ci_report": "backstop_data/ci_report",
+    "fileNameTemplate": "{scenarioLabel}-{selectorIndex}-{viewportLabel}-{timestamp}"
   },
   "report": [
     "browser"
